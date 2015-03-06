@@ -23,6 +23,11 @@ body {
   // background-color: red;
 }
 
+.hero {
+  height: 300px;
+  background: url('http://placekitten.com/g/730/300') no-repeat center center;
+}
+
 h1 {
   font-family: Helvetica, Karla, Arial, sans-serif;
   font-size: 3em;
@@ -33,12 +38,22 @@ section {
   width: 100%;
 }
 
-.hero {
-  height: 300px;
-  background: url('http://placekitten.com/g/730/300') no-repeat center center;
+.row {
+  display: flex;
+
 }
 
-.onethird {
-  width: 230px;
-  height: 160px;
+img {
+
+  .onecolumn {
+  width: 300px;
+  height: 180px;
+
+  @media #{$medium-up} {
+
+    .onethird {
+      width: 230px;
+      height: 160px;
+    }
+  }
 }
