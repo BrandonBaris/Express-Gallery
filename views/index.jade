@@ -9,32 +9,13 @@ block content
   section.hero
     img(src="http://placekitten.com/g/730/300")
 
-  ul
-    each photo in photos
-      li 
-        img(src="#{photo.image}", alt="shit")
-        div= photo.author
-        div= photo.description
   section.images
-    .imgbox
-      img(src="http://placekitten.com/g/300/180")
-      .caption Mountain Hill Cabin Winter — www.fantasticnorway.no
-    .imgbox
-      img(src="http://placekitten.com/g/300/180")
-      .caption Kneisen Visitors Center — www.fantasticnorway.no
-    .imgbox
-      img(src="http://placekitten.com/g/300/180")
-      .caption Bronnoy Kunstbase — www.fantasticnorway.no
-    .imgbox
-      img(src="http://placekitten.com/g/300/180")
-      .caption Mountain Hill Cabin Winter — www.fantasticnorway.no
-    .imgbox
-      img(src="http://placekitten.com/g/300/180")
-      .caption Kneisen Visitors Center — www.fantasticnorway.no
-    .imgbox
-      img(src="http://placekitten.com/g/300/180")
-      .caption Bronnoy Kunstbase — www.fantasticnorway.no
-
+    each photo in photos
+      .imgbox
+        img(src="#{photo.image}")
+        h2= photo.author
+        .caption= photo.description
+  
   footer qwqw
 
 script(type="text/javascript" src="/js/jquery.min.js")
