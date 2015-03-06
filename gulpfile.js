@@ -5,7 +5,7 @@ var jade = require('gulp-jade');
 
 gulp.task('connect', function() {
   connect.server({
-      root: 'public',
+      root: 'app',
       port: 8080,
       livereload: true
   });
@@ -14,7 +14,7 @@ gulp.task('connect', function() {
 gulp.task('sass', function() {
   return gulp.src('./sass/**/*.scss')
     .pipe(sass( { errLogToConsole: true }))
-    .pipe(gulp.dest('./public/css'));
+    .pipe(gulp.dest('./app/css'));
 });
 
 gulp.task('jade', function() {
@@ -25,18 +25,18 @@ gulp.task('jade', function() {
       locals : views_to_html,
       pretty: true,
       errLogToConsole: true }))
-    .pipe(gulp.dest('./public/'));
+    .pipe(gulp.dest('./app/'));
 });
 
 gulp.task('livereload', function() {
-  gulp.src('./public/**/*')
+  gulp.src('./app/**/*')
     .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {
   gulp.watch('./sass/**/*.scss', ['sass']);
   gulp.watch('./views/**/*.jade', ['jade']);
-  gulp.watch('./public/**/*', ['livereload']);
+  gulp.watch('./app/**/*', ['livereload']);
 });
 
 gulp.task('default', ['connect','watch','sass']);
