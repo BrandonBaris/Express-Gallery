@@ -11,24 +11,12 @@ block content
     img(src="http://placekitten.com/g/730/300")
 
   section.flex-container
-    .flex-box
-      img.flex-image(src="http://placekitten.com/g/300/180")
-      .caption Mountain Hill Cabin Winter — www.fantasticnorway.no
-    .flex-box
-      img.flex-image(src="http://placekitten.com/g/300/180")
-      .caption Kneisen Visitors Center — www.fantasticnorway.no
-    .flex-box
-      img.flex-image(src="http://placekitten.com/g/300/180")
-      .caption Bronnoy Kunstbase — www.fantasticnorway.no
-    .flex-box
-      img.flex-image(src="http://placekitten.com/g/300/180")
-      .caption Mountain Hill Cabin Winter — www.fantasticnorway.no
-    .flex-box
-      img.flex-image(src="http://placekitten.com/g/300/180")
-      .caption Kneisen Visitors Center — www.fantasticnorway.no
-    .flex-box
-      img.flex-image(src="http://placekitten.com/g/300/180")
-      .caption Bronnoy Kunstbase — www.fantasticnorway.no
+
+    each photo in photos
+      .flex-box
+        img.flex-image(src="#{photo.image}")
+        .caption= photo.author
+          p= photo.description
 
   footer
 

@@ -9,7 +9,7 @@ app.set('views', __dirname + '/views');
 app.set( 'view engine', 'jade' );
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/photos');
 var Schema = mongoose.Schema;
 var GalleryItem = new Schema({
   author : { type : String, required : true },
@@ -18,13 +18,13 @@ var GalleryItem = new Schema({
   created_at : { type : Date, default: Date.now() }
 });
 
-var GalleryItem = mongoose.model( 'photos', GalleryItem );
+var GalleryItem = mongoose.model( 'photo', GalleryItem );
 // --- index ---
 app.get('/', function (req, res) {
-  GalleryItem.find(function(err,photos){
+  GalleryItem.find(function(err, photoInDb){
 
   if (err) throw err;
-  res.render('index', {photos : photos});
+  res.render('index', { photos : photoInDb});
 
   });
 });
@@ -39,9 +39,9 @@ app.get('/gallery/:id/edit', function (req, res) {
   var photoId = req.params.id;
   var query = GalleryItem.where({ id : photoId });
 
-  query.findOne(function( err, photos ){
+  query.findOne(function( err, photoInDb ){
     if (err) throw err;
-    res.render('edit', { photos : photos });
+    res.render('edit', { photos : photoInDb });
   });
 });
 
@@ -54,8 +54,9 @@ app.post('/gallery', function(req, res) {
     description : req.body.description || ""
   });
 
-  photos.save( function ( err, photos ) {
-    // if (err) throw err;
+  photos.save( function ( err, photo ) {
+    if (err) throw err;
+    console.log(photo);
     res.redirect( "/" );
   });
 });

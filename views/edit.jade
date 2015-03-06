@@ -1,1 +1,24 @@
-edit_item.jade
+extends ./partials/header.jade
+
+block content
+  header 
+    .logo
+      h1 Edit Photo
+    .logo-blurb
+      span Welcome to our online portfolio, we are a small group of passionate designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps. Free Architecture WordPress Theme.
+
+  section
+    form.pure-form
+      fieldset
+        label(for="image") Image
+        input.image(name="image")
+        label(for="author") Author
+        input.author(name="author")
+        label(for="description") Description
+        textarea.description(contenteditable)
+        button.pure-button.pure-button-primary(type="submit") Submit
+
+  footer
+
+script(type="text/javascript" src="/js/jquery.min.js")
+script(type="text/javascript" src="/js/app.js")

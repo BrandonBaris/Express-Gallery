@@ -10,13 +10,13 @@ block content
   section
     form.pure-form
       fieldset
-        label(for="image") Image
-        input.image(name="image")
+        label(for="link") Image
+        input.image(name="link")
         label(for="author") Author
         input.author(name="author")
         label(for="description") Description
-        textarea.description(contenteditable)
-        button.pure-button.pure-button-primary(type="submit") Submit
+        textarea.description(name="description" contenteditable)
+        button.pure-button.pure-button-primary(type="submit" action="/gallery" method="POST") Submit
 
   footer
 
