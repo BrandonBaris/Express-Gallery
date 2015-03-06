@@ -11,19 +11,19 @@ app.set( 'view engine', 'jade' );
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 var Schema = mongoose.Schema;
-var GalleryItem = new Schema({
+var gallerySchema = new Schema({
   author : { type : String, required : true },
   image : { type : String, required : true },
   description : String,
   created_at : { type : Date, default: Date.now() }
 });
 
-var GalleryItem = mongoose.model( 'photos', GalleryItem );
+var GalleryItem = mongoose.model( 'photo', gallerySchema );
 
 // --- index ---
 app.get('/', function (req, res) {
   GalleryItem.find(function(err,photos){
-
+    console.log(photos.image);
   if (err) throw err;
   res.render('index', {photos : photos});
 
@@ -51,7 +51,7 @@ app.post('/gallery', function(req, res) {
 
   var photos = new GalleryItem({
     author : req.body.author || "",
-    image : req.body.link || "",
+    image : req.body.image || "",
     description : req.body.description || ""
   });
 

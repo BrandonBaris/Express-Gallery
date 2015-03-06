@@ -7,14 +7,15 @@ block content
     .right
 
   section
-    div
-      input.image(name="image")
-    div
-      input.author(name="author")
-    div
-      textarea.description(contenteditable)
-    div
-      button(type="submit")
+    form(action="/gallery" method="POST")
+      div
+        input#image.image(name="image")
+      div
+        input#author.author(name="author")
+      div
+        textarea#description.description(name="description", contenteditable)
+      div
+        button(type="submit")
   footer
 
 script(type="text/javascript" src="/js/jquery.min.js")

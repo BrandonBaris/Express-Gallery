@@ -20,8 +20,14 @@ block content
       img.onecolumn(src="http://placekitten.com/g/230/160")
       img.onecolumn(src="http://placekitten.com/g/230/160")
       img.onecolumn(src="http://placekitten.com/g/230/160")
+  ul
+    each photo in photos
+      li 
+        img(src="#{photo.image}", alt="shit")
+        div= photo.author
+        div= photo.description
 
-  footer
+  footer qwqw
 
 script(type="text/javascript" src="/js/jquery.min.js")
 script(type="text/javascript" src="/js/app.js")
