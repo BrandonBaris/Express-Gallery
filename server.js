@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+
 app.use( express.static( __dirname + '/app') );
 app.set('views', __dirname + '/views');
 app.set( 'view engine', 'jade' );
@@ -11,14 +12,14 @@ app.set( 'view engine', 'jade' );
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/photos');
 var Schema = mongoose.Schema;
-var GalleryItem = new Schema({
+var GalleryItemSchema = new Schema({
   author : { type : String, required : true },
   image : { type : String, required : true },
   description : String,
   created_at : { type : Date, default: Date.now() }
 });
 
-var GalleryItem = mongoose.model( 'photo', GalleryItem );
+var GalleryItem = mongoose.model( 'photo', GalleryItemSchema );
 // --- index ---
 app.get('/', function (req, res) {
   GalleryItem.find(function(err, photoInDb){
@@ -49,15 +50,14 @@ app.get('/gallery/:id/edit', function (req, res) {
 app.post('/gallery', function(req, res) {
 
   var photos = new GalleryItem({
-    author : req.body.author || "",
-    image : req.body.link || "",
+    author : req.body.author,
+    image : req.body.link,
     description : req.body.description || ""
   });
 
   photos.save( function ( err, photo ) {
     if (err) throw err;
-    console.log(photo);
-    res.redirect( "/" );
+    res.redirect( '/' );
   });
 });
 

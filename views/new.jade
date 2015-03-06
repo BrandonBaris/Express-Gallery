@@ -8,7 +8,7 @@ block content
       span Welcome to our online portfolio, we are a small group of passionate designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps. Free Architecture WordPress Theme.
 
   section
-    form.pure-form
+    form.pure-form(action="/gallery" method="POST")
       fieldset
         label(for="link") Image
         input.image(name="link")
@@ -16,7 +16,7 @@ block content
         input.author(name="author")
         label(for="description") Description
         textarea.description(name="description" contenteditable)
-        button.pure-button.pure-button-primary(type="submit" action="/gallery" method="POST") Submit
+        button.pure-button.pure-button-primary(type="submit") Submit
 
   footer
 
