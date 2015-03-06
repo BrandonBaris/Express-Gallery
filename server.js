@@ -5,10 +5,7 @@ var methodOverride = require('method-override');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use( express.static( __dirname + '/app') );
-<<<<<<< HEAD
-=======
 app.set('views', __dirname + '/views');
->>>>>>> 0d6b4e6cad98af81df8b4ec384115d04a4a3c5e5
 app.set( 'view engine', 'jade' );
 
 var mongoose = require('mongoose');
@@ -22,10 +19,7 @@ var GalleryItem = new Schema({
 });
 
 var GalleryItem = mongoose.model( 'photos', GalleryItem );
-<<<<<<< HEAD
 
-=======
->>>>>>> 0d6b4e6cad98af81df8b4ec384115d04a4a3c5e5
 // --- index ---
 app.get('/', function (req, res) {
   GalleryItem.find(function(err,photos){
