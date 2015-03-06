@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost/test');
 var Schema = mongoose.Schema;
 var galleryItem = new Schema({
   author : { type : String, required : true },
-  link : { type : String, required : true },
+  image : { type : String, required : true },
   description : String,
   created_at : { type : Date, default: Date.now() }
 });
@@ -49,6 +49,7 @@ app.post('/photos', function(req, res) {
 
   var photos = new galleryItem({
     author : req.body.author || "",
+    image : req.body.link || "",
     description : req.body.description || ""
   });
 
