@@ -24,7 +24,7 @@ var GalleryItem = mongoose.model( 'photo', GalleryItemSchema );
 
 // --- index ---
 app.get('/', function (req, res) {
-  GalleryItem.find(function(err,photos){
+  GalleryItem.find(function(err, photoInDb){
     if (err) throw err;
     // console.log(photos.image);
     res.render('index', { photos : photoInDb});
