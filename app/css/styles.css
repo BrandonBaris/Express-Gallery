@@ -11,25 +11,15 @@ html {
   margin-top: 4em;
   border-top: 1px dotted #ccc;
   text-align: center; }
+  @media only screen and (min-width: 40.063em) {
+    .container {
+      text-align: left; } }
 
 h1 {
   font-family: Helvetica, Karla, Arial, sans-serif;
   font-size: 3.5em;
   color: #7e7e7e;
   margin: 0; }
-
-.hero {
-  height: auto;
-  margin: 0 auto;
-  overflow: hidden;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 0.5em;
-  text-align: center; }
-  .hero img {
-    width: inherit;
-    height: auto;
-    margin: 0 auto;
-    padding: 0px; }
 
 header {
   display: flex;
@@ -42,27 +32,69 @@ header {
   vertical-align: middle;
   margin-bottom: 4em; }
   header .logo {
-    width: 400px;
-    height: 100px;
+    width: 100%;
     vertical-align: middle;
-    margin: 13px 13px 0 0;
+    margin: 13px;
     padding-top: 10px; }
+    @media only screen and (min-width: 40.063em) {
+      header .logo {
+        text-align: center;
+        width: 400px; } }
   header .logo-blurb {
-    display: none; }
+    display: none;
+    width: 330px;
+    border-left: 1px solid #ccc;
+    margin: 13px;
+    padding-left: 13px;
+    text-align: left;
+    color: #a4a4a4;
+    font-size: 0.8em;
+    vertical-align: inherit; }
     @media only screen and (min-width: 40.063em) {
       header .logo-blurb {
-        display: inline-block;
-        width: 330px;
-        border-left: 1px solid #ccc;
-        margin: 13px;
-        padding-left: 13px;
-        text-align: left;
-        color: #a4a4a4;
-        font-size: 0.8em;
-        vertical-align: inherit; } }
+        display: inline-block; } }
 
 section {
   width: 100%; }
+  section.hero {
+    width: 320px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5em;
+    text-align: center; }
+    @media only screen and (min-width: 40.063em) {
+      section.hero {
+        width: inherit; } }
+    section.hero img {
+      width: inherit;
+      height: auto;
+      margin: 0 auto;
+      padding: 0px; }
+
+form {
+  width: 400px;
+  display: block;
+  margin: 0 auto; }
+  form input {
+    width: 400px;
+    display: block;
+    margin: 0 auto;
+    margin: 1em 0; }
+  form textarea {
+    width: 400px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    resize: vertical;
+    max-height: 300px; }
+  form button {
+    display: block;
+    float: right; }
+  form label {
+    width: 400px;
+    display: block; }
 
 .flex-container {
   display: flex;
@@ -90,7 +122,8 @@ section {
     .flex-box {
       width: 230px;
       padding-bottom: 1em;
-      border-bottom: 1px solid #ccc; } }
+      border-bottom: 1px solid #ccc;
+      margin: 0; } }
   .flex-box:last-of-type .caption {
     padding-bottom: 3em;
     border-bottom: 1px solid #ccc; }

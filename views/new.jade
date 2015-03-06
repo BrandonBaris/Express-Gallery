@@ -2,19 +2,22 @@ extends ./partials/header.jade
 
 block content
   header 
-    h1 New Photo
-    .left
-    .right
+    .logo
+      h1 New Photo
+    .logo-blurb
+      span Welcome to our online portfolio, we are a small group of passionate designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps. Free Architecture WordPress Theme.
 
   section
-    div
-      input.image(name="image")
-    div
-      input.author(name="author")
-    div
-      textarea.description(contenteditable)
-    div
-      button(type="submit")
+    form.pure-form
+      fieldset
+        label(for="image") Image
+        input.image(name="image")
+        label(for="author") Author
+        input.author(name="author")
+        label(for="description") Description
+        textarea.description(contenteditable)
+        button.pure-button.pure-button-primary(type="submit") Submit
+
   footer
 
 script(type="text/javascript" src="/js/jquery.min.js")

@@ -46,9 +46,9 @@ gulp.task('watch', function() {
   gulp.watch('./sass/**/*.scss', ['sass']);
   gulp.watch('./views/**/*.jade', ['jade']);
   gulp.watch('./app/**/*', ['livereload']);
-  gulp.watch('./', ['server']);
+  // gulp.watch('./', ['server']);
 });
 
 // gulp.task('default', ['server','watch','sass']);
 // gulp.task('default', ['connect','watch','sass','server']);
-gulp.task('default', ['watch','sass']);
+gulp.task('default', ['watch','sass', 'livereload']);
