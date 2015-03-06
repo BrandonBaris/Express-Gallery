@@ -20,12 +20,12 @@ gulp.task('sass', function() {
 gulp.task('jade', function() {
   var views_to_html = {};
 
-  gulp.src('./views/*.jade')
+  gulp.src('./views/**/*.jade')
     .pipe(jade( { 
       locals : views_to_html,
       pretty: true,
       errLogToConsole: true }))
-    .pipe(gulp.dest('./public'));
+    .pipe(gulp.dest('./public/'));
 });
 
 gulp.task('livereload', function() {
@@ -35,7 +35,7 @@ gulp.task('livereload', function() {
 
 gulp.task('watch', function() {
   gulp.watch('./sass/**/*.scss', ['sass']);
-  gulp.watch('./views/*.jade', ['jade']);
+  gulp.watch('./views/**/*.jade', ['jade']);
   gulp.watch('./public/**/*', ['livereload']);
 });
 
