@@ -18,6 +18,7 @@ var GalleryItem = new Schema({
 });
 
 var GalleryItem = mongoose.model( 'photos', GalleryItem );
+
 // --- index ---
 app.get('/', function (req, res) {
   GalleryItem.find(function(err,photos){
@@ -30,7 +31,7 @@ app.get('/', function (req, res) {
 
 // --- new gallery render---
 app.get('/new_photo', function (req, res) {
-  res.render('image');
+  res.render('new');
 });
 
 // --- editing gallery ---
