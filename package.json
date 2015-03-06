@@ -16,7 +16,6 @@
     "url": "https://github.com/BrandonBaris/Express-Gallery/issues"
   },
   "homepage": "https://github.com/BrandonBaris/Express-Gallery",
-
   "dependencies": {
     "gulp": "^3.8.11",
     "gulp-sass": "^1.3.3",
@@ -26,6 +25,7 @@
     "mongoose": "^3.8.24"
   },
   "devDependencies": {
+    "gulp-express": "^0.2.1",
     "jquery": "^2.1.3"
   }
 }

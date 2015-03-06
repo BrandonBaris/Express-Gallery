@@ -1,7 +1,21 @@
+$rem : 16px;
+
 html {
- background-color: #fff;
+  background: url('../assets/concrete_seamless.png') repeat;
+  background-color: #fff;
 }
 
 body {
-  background-color: blue;
+  width: 730px;
+  max-width: 730px;
+  margin: 0 auto;
+  margin-top: $rem*4;
+  border-top: 1px dotted #ccc;
+  // background-color: red;
+}
+
+h1 {
+  font-family: Helvetica, Karla, Arial, sans-serif;
+  font-size: 3em;
+  color: #7e7e7e;
 }
