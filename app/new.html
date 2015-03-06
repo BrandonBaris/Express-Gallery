@@ -4,29 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>_ARCHITEKT</title>
+  <link rel="stylesheet" href="/css/pure-min.css">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla:400,700">
 </head>
 <body>
   <div class="container">
     <header> 
-      <h1>New Photo</h1>
-      <div class="left"></div>
-      <div class="right"></div>
+      <div class="logo">
+        <h1>New Photo</h1>
+      </div>
+      <div class="logo-blurb"><span>Welcome to our online portfolio, we are a small group of passionate designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps. Free Architecture WordPress Theme.</span></div>
     </header>
     <section>
-      <div>
-        <input name="image" class="image">
-      </div>
-      <div>
-        <input name="author" class="author">
-      </div>
-      <div>
-        <textarea contenteditable class="description"></textarea>
-      </div>
-      <div>
-        <button type="submit"></button>
-      </div>
+      <form class="pure-form">
+        <fieldset>
+          <label for="image">Image</label>
+          <input name="image" class="image">
+          <label for="author">Author</label>
+          <input name="author" class="author">
+          <label for="description">Description</label>
+          <textarea contenteditable class="description"></textarea>
+          <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </fieldset>
+      </form>
     </section>
     <footer></footer>
   </div>

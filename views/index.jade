@@ -2,21 +2,23 @@ extends ./partials/header.jade
 
 block content
   header 
-    h1 _ARCHITEKT
-    .left
-    .right
+    .logo
+      h1 _ARCHITEKT
+    .logo-blurb
+      span Welcome to our online portfolio, we are a small group of passionate designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps. Free Architecture WordPress Theme.
 
   section.hero
     img(src="http://placekitten.com/g/730/300")
 
-  section.images
+  section.flex-container
+
     each photo in photos
-      .imgbox
-        img(src="#{photo.image}")
-        h2= photo.author
-        .caption= photo.description
-  
-  footer qwqw
+      .flex-box
+        img.flex-image(src="#{photo.image}")
+        .caption= photo.author
+          p= photo.description
+
+  footer 
 
 script(type="text/javascript" src="/js/jquery.min.js")
 script(type="text/javascript" src="/js/app.js")

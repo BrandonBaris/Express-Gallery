@@ -4,28 +4,30 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+
 app.use( express.static( __dirname + '/app') );
 app.set('views', __dirname + '/views');
 app.set( 'view engine', 'jade' );
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/photos');
 var Schema = mongoose.Schema;
-var gallerySchema = new Schema({
+var GalleryItemSchema = new Schema({
   author : { type : String, required : true },
   image : { type : String, required : true },
   description : String,
   created_at : { type : Date, default: Date.now() }
 });
 
-var GalleryItem = mongoose.model( 'photo', gallerySchema );
+
+var GalleryItem = mongoose.model( 'photo', GalleryItemSchema );
 
 // --- index ---
 app.get('/', function (req, res) {
-  GalleryItem.find(function(err,photos){
-    console.log(photos.image);
-  if (err) throw err;
-  res.render('index', {photos : photos});
+  GalleryItem.find(function(err, photoInDb){
+    if (err) throw err;
+    // console.log(photos.image);
+    res.render('index', { photos : photoInDb});
 
   });
 });
@@ -40,9 +42,9 @@ app.get('/gallery/:id/edit', function (req, res) {
   var photoId = req.params.id;
   var query = GalleryItem.where({ id : photoId });
 
-  query.findOne(function( err, photos ){
+  query.findOne(function( err, photoInDb ){
     if (err) throw err;
-    res.render('edit', { photos : photos });
+    res.render('edit', { photos : photoInDb });
   });
 });
 
@@ -50,14 +52,14 @@ app.get('/gallery/:id/edit', function (req, res) {
 app.post('/gallery', function(req, res) {
 
   var photos = new GalleryItem({
-    author : req.body.author || "",
-    image : req.body.image || "",
+    author : req.body.author,
+    image : req.body.link,
     description : req.body.description || ""
   });
 
-  photos.save( function ( err, photos ) {
-    // if (err) throw err;
-    res.redirect( "/" );
+  photos.save( function ( err, photo ) {
+    if (err) throw err;
+    res.redirect( '/' );
   });
 });
 
