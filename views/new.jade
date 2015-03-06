@@ -1,20 +1,20 @@
-extends ../partials/header.jade
+extends ./partials/header.jade
 
-    block content
-      header 
-        h1 New Item
-        .left
-        .right
+block content
+  header 
+    h1 New Photo
+    .left
+    .right
 
-      section
-        div
-          input.image(name="image")
-        div
-          input.author(name="author")
-        div
-          textarea.description(contenteditable)
+  section
+    div
+      input.image(name="image")
+    div
+      input.author(name="author")
+    div
+      textarea.description(contenteditable)
 
-      footer
+  footer
 
 script(type="text/javascript" src="/js/jquery.min.js")
 script(type="text/javascript" src="/js/app.js")

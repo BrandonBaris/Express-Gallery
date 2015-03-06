@@ -2,11 +2,10 @@ html {
   background: url('../assets/concrete_seamless.png') repeat;
   background-color: #fff; }
 
-body {
-  width: 730px;
-  margin: 0 auto; }
-
 .container {
+  width: 730px;
+  max-width: 730px;
+  margin: 0 auto;
   margin-top: 4em;
   border-top: 1px dotted #ccc; }
 

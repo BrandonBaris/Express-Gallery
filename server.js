@@ -5,22 +5,23 @@ var methodOverride = require('method-override');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use( express.static( __dirname + '/app') );
+app.set('views', __dirname + '/views');
 app.set( 'view engine', 'jade' );
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 var Schema = mongoose.Schema;
-var galleryItem = new Schema({
+var GalleryItem = new Schema({
   author : { type : String, required : true },
-  link : { type : String, required : true },
+  image : { type : String, required : true },
   description : String,
   created_at : { type : Date, default: Date.now() }
 });
 
-var galleryItem = mongoose.model( 'photos', galleryItem );
+var GalleryItem = mongoose.model( 'photos', GalleryItem );
 // --- index ---
 app.get('/', function (req, res) {
-  galleryItem.find(function(err,photos){
+  GalleryItem.find(function(err,photos){
 
   if (err) throw err;
   res.render('index', {photos : photos});
@@ -30,13 +31,13 @@ app.get('/', function (req, res) {
 
 // --- new gallery render---
 app.get('/new_photo', function (req, res) {
-  res.render('new_photo');
+  res.render('new');
 });
 
 // --- editing gallery ---
-app.get('/photos/:_id/edit', function (req, res) {
-  var photoId = req.params._id;
-  var query = galleryItem.where({ _id : photoId });
+app.get('/gallery/:id/edit', function (req, res) {
+  var photoId = req.params.id;
+  var query = GalleryItem.where({ id : photoId });
 
   query.findOne(function( err, photos ){
     if (err) throw err;
@@ -45,10 +46,11 @@ app.get('/photos/:_id/edit', function (req, res) {
 });
 
 // --- posting/creating a new gallery
-app.post('/photos', function(req, res) {
+app.post('/gallery', function(req, res) {
 
-  var photos = new galleryItem({
+  var photos = new GalleryItem({
     author : req.body.author || "",
+    image : req.body.link || "",
     description : req.body.description || ""
   });
 
@@ -59,11 +61,11 @@ app.post('/photos', function(req, res) {
 });
 
 // --- updating gallery via edit ---
-app.put('/photos/:_id', function(req, res) {
-  var photoId = req.params._id;
+app.put('/gallery/:id', function(req, res) {
+  var photoId = req.params.id;
   var author = req.body.author;
   var description = req.body.description;
-  var query = galleryItem.find({ _id : photoId });
+  var query = GalleryItem.find({ id : photoId });
   query.update({author: author, description: description }, function( err ){
     if (err) throw err;
     res.redirect( '/' );
@@ -71,9 +73,9 @@ app.put('/photos/:_id', function(req, res) {
 });
 
 // --- deletion of gallery item ---
-app.delete('/photos/:_id', function(req, res) {
-  var photoId = req.params._id;
-  var query = galleryItem.find({ _id : photoId });
+app.delete('/gallery/:id', function(req, res) {
+  var photoId = req.params.id;
+  var query = GalleryItem.find({ id : photoId });
   query.remove(function( err ){
     if (err) throw err;
     res.redirect( '/' );
