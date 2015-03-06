@@ -19,13 +19,15 @@ var GalleryItemSchema = new Schema({
   created_at : { type : Date, default: Date.now() }
 });
 
+
 var GalleryItem = mongoose.model( 'photo', GalleryItemSchema );
+
 // --- index ---
 app.get('/', function (req, res) {
-  GalleryItem.find(function(err, photoInDb){
-
-  if (err) throw err;
-  res.render('index', { photos : photoInDb});
+  GalleryItem.find(function(err,photos){
+    if (err) throw err;
+    // console.log(photos.image);
+    res.render('index', { photos : photoInDb});
 
   });
 });
