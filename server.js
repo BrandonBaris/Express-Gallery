@@ -10,17 +10,17 @@ app.set( 'view engine', 'jade' );
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 var Schema = mongoose.Schema;
-var galleryItem = new Schema({
+var GalleryItem = new Schema({
   author : { type : String, required : true },
   image : { type : String, required : true },
   description : String,
   created_at : { type : Date, default: Date.now() }
 });
 
-var galleryItem = mongoose.model( 'photos', galleryItem );
+var GalleryItem = mongoose.model( 'photos', GalleryItem );
 // --- index ---
 app.get('/', function (req, res) {
-  galleryItem.find(function(err,photos){
+  GalleryItem.find(function(err,photos){
 
   if (err) throw err;
   res.render('index', {photos : photos});
@@ -36,7 +36,7 @@ app.get('/new_photo', function (req, res) {
 // --- editing gallery ---
 app.get('/gallery/:id/edit', function (req, res) {
   var photoId = req.params.id;
-  var query = galleryItem.where({ id : photoId });
+  var query = GalleryItem.where({ id : photoId });
 
   query.findOne(function( err, photos ){
     if (err) throw err;
@@ -47,7 +47,7 @@ app.get('/gallery/:id/edit', function (req, res) {
 // --- posting/creating a new gallery
 app.post('/gallery', function(req, res) {
 
-  var photos = new galleryItem({
+  var photos = new GalleryItem({
     author : req.body.author || "",
     image : req.body.link || "",
     description : req.body.description || ""
@@ -64,7 +64,7 @@ app.put('/gallery/:id', function(req, res) {
   var photoId = req.params.id;
   var author = req.body.author;
   var description = req.body.description;
-  var query = galleryItem.find({ id : photoId });
+  var query = GalleryItem.find({ id : photoId });
   query.update({author: author, description: description }, function( err ){
     if (err) throw err;
     res.redirect( '/' );
@@ -74,7 +74,7 @@ app.put('/gallery/:id', function(req, res) {
 // --- deletion of gallery item ---
 app.delete('/gallery/:id', function(req, res) {
   var photoId = req.params.id;
-  var query = galleryItem.find({ id : photoId });
+  var query = GalleryItem.find({ id : photoId });
   query.remove(function( err ){
     if (err) throw err;
     res.redirect( '/' );
