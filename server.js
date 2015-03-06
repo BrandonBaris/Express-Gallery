@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
-app.use( express.static( __dirname + './app') );
+app.use( express.static( __dirname + '/app') );
 app.set( 'view engine', 'jade' );
 
 var mongoose = require('mongoose');
@@ -30,13 +30,13 @@ app.get('/', function (req, res) {
 
 // --- new gallery render---
 app.get('/new_photo', function (req, res) {
-  res.render('new_photo');
+  res.render('image');
 });
 
 // --- editing gallery ---
-app.get('/photos/:_id/edit', function (req, res) {
-  var photoId = req.params._id;
-  var query = galleryItem.where({ _id : photoId });
+app.get('/gallery/:id/edit', function (req, res) {
+  var photoId = req.params.id;
+  var query = galleryItem.where({ id : photoId });
 
   query.findOne(function( err, photos ){
     if (err) throw err;
@@ -45,7 +45,7 @@ app.get('/photos/:_id/edit', function (req, res) {
 });
 
 // --- posting/creating a new gallery
-app.post('/photos', function(req, res) {
+app.post('/gallery', function(req, res) {
 
   var photos = new galleryItem({
     author : req.body.author || "",
@@ -60,11 +60,11 @@ app.post('/photos', function(req, res) {
 });
 
 // --- updating gallery via edit ---
-app.put('/photos/:_id', function(req, res) {
-  var photoId = req.params._id;
+app.put('/gallery/:id', function(req, res) {
+  var photoId = req.params.id;
   var author = req.body.author;
   var description = req.body.description;
-  var query = galleryItem.find({ _id : photoId });
+  var query = galleryItem.find({ id : photoId });
   query.update({author: author, description: description }, function( err ){
     if (err) throw err;
     res.redirect( '/' );
@@ -72,9 +72,9 @@ app.put('/photos/:_id', function(req, res) {
 });
 
 // --- deletion of gallery item ---
-app.delete('/photos/:_id', function(req, res) {
-  var photoId = req.params._id;
-  var query = galleryItem.find({ _id : photoId });
+app.delete('/gallery/:id', function(req, res) {
+  var photoId = req.params.id;
+  var query = galleryItem.find({ id : photoId });
   query.remove(function( err ){
     if (err) throw err;
     res.redirect( '/' );
