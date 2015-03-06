@@ -1,0 +1,22 @@
+{
+  "name": "Express-Gallery",
+  "version": "1.0.0",
+  "description": "Express-Gallery ===============",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BrandonBaris/Express-Gallery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrandonBaris/Express-Gallery/issues"
+  },
+  "homepage": "https://github.com/BrandonBaris/Express-Gallery",
+  "devDependencies": {
+    "gulp-jade": "^1.0.0"
+  }
+}
