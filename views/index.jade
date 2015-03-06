@@ -1,34 +1,27 @@
-doctype
-html(lang="en")
-head
-  meta(charset="UTF-8")
-  meta(name="viewport" content="width=device-width, initial-scale=1")
-  title _ARCHITEKT
-  link(type="text/css" rel="stylesheet" href="css/styles.css")
-  link(type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla:400,700")
-body
-  .container
-    header 
-      h1 _ARCHITEKT
-      .left
-      .right
+extends ./partials/header.jade
 
-    section
-      .hero
+block content
+  header 
+    h1 _ARCHITEKT
+    .left
+    .right
 
-    section
-      .row
-        img.onethird(src="http://placekitten.com/g/230/160")
-        img.onethird(src="http://placekitten.com/g/230/160")
-        img.onethird(src="http://placekitten.com/g/230/160")
+  section
+    .hero
 
-    section
-      .row
-        img.onethird(src="http://placekitten.com/g/230/160")
-        img.onethird(src="http://placekitten.com/g/230/160")
-        img.onethird(src="http://placekitten.com/g/230/160")
+  section
+    .row
+      img.onethird(src="http://placekitten.com/g/230/160")
+      img.onethird(src="http://placekitten.com/g/230/160")
+      img.onethird(src="http://placekitten.com/g/230/160")
 
-    footer
+  section
+    .row
+      img.onethird(src="http://placekitten.com/g/230/160")
+      img.onethird(src="http://placekitten.com/g/230/160")
+      img.onethird(src="http://placekitten.com/g/230/160")
 
-script(type="text/javascript" src="js/jquery.min.js")
-script(type="text/javascript" src="js/app.js")
+  footer
+
+script(type="text/javascript" src="/js/jquery.min.js")
+script(type="text/javascript" src="/js/app.js")

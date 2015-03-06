@@ -1,4 +1,8 @@
-$rem : 16px;
+$rem : 1em;
+$breakpoint : 400px;
+//settings
+$small-up: "only screen" !default;
+$medium-up: "only screen and (min-width:#{$breakpoint})" !default;
 
 html {
   background: url('../assets/concrete_seamless.png') repeat;
@@ -6,6 +10,11 @@ html {
 }
 
 body {
+  // width: 730px;
+  // margin: 0 auto;
+}
+
+.container {
   width: 730px;
   max-width: 730px;
   margin: 0 auto;
