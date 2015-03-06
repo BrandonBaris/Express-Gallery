@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var connect = require('gulp-connect');
 var jade = require('gulp-jade');
+var server = require('gulp-express');
 
 gulp.task('connect', function() {
   connect.server({
@@ -9,6 +10,14 @@ gulp.task('connect', function() {
       port: 8080,
       livereload: true
   });
+});
+
+gulp.task('server', function () {
+  // run server
+  server.run(['server.js']);
+
+  // restart on file change
+  gulp.watch(['server.js'], [server.run]);
 });
 
 gulp.task('sass', function() {
@@ -37,7 +46,8 @@ gulp.task('watch', function() {
   gulp.watch('./sass/**/*.scss', ['sass']);
   gulp.watch('./views/**/*.jade', ['jade']);
   gulp.watch('./app/**/*', ['livereload']);
+  gulp.watch('./', ['server']);
 });
 
-gulp.task('default', ['connect','watch','sass']);
+gulp.task('default', ['connect','watch','sass','server']);
 gulp.task('no-server', ['watch','sass']);
