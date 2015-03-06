@@ -1,8 +1,8 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp    = require('gulp');
+var sass    = require('gulp-sass');
 var connect = require('gulp-connect');
-var jade = require('gulp-jade');
-var server = require('gulp-express');
+var jade    = require('gulp-jade');
+var server  = require('gulp-express');
 
 gulp.task('connect', function() {
   connect.server({
@@ -49,6 +49,6 @@ gulp.task('watch', function() {
   gulp.watch('./', ['server']);
 });
 
-gulp.task('default', ['server','watch','sass']);
+// gulp.task('default', ['server','watch','sass']);
 // gulp.task('default', ['connect','watch','sass','server']);
-gulp.task('no-server', ['watch','sass']);
+gulp.task('default', ['watch','sass']);
