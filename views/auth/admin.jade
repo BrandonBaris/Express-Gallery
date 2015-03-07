@@ -1,0 +1,24 @@
+extends ../partials/header.jade
+
+block content
+  header 
+    .logo
+      h1= user.username
+    .logo-blurb
+      span Welcome to our online portfolio, we are a small group of passionate designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps. Free Architecture WordPress Theme.
+
+  section.hero
+    img(src="http://placekitten.com/g/730/300")
+
+  section.flex-container
+
+    each photo in photos
+      .flex-box
+        img.flex-image(src="#{photo.image}")
+        .caption= photo.author
+          p= photo.description
+  
+  include ../includes/footer.jade
+
+script(type="text/javascript" src="/js/jquery.min.js")
+script(type="text/javascript" src="/js/app.js")

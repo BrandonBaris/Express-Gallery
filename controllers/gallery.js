@@ -3,11 +3,15 @@ var router = express.Router();
 module.exports = router;
 var GalleryItem = require('../models/photo');
 
+function ensureAuthenticated( req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}
+
 // --- index ---
 router.list =  function (req, res) {
   GalleryItem.find(function(err, photoInDb){
     if (err) throw err;
-    // console.log(photos.image);
     res.render('index', { photos : photoInDb});
 
   });
@@ -29,8 +33,15 @@ router.get('/:id/edit', function (req, res) {
   });
 });
 
+// ------- admin 
+router.get('/admin', ensureAuthenticated, function ( req, res ) {
+  GalleryItem.find(function(err, photoInDb){
+    res.render('auth/admin', { photos : photoInDb, user : req.user });
+  });
+});
+
 // --- posting/creating a new gallery
-router.post('/', function(req, res) {
+router.post('/', ensureAuthenticated, function(req, res) {
 
   var photos = new GalleryItem({
     author : req.body.author,
@@ -45,7 +56,7 @@ router.post('/', function(req, res) {
 });
 
 // --- updating gallery via edit ---
-router.put('/:id', function(req, res) {
+router.put('/:id', ensureAuthenticated, function(req, res) {
   var photoId = req.params.id;
   var author = req.body.author;
   var description = req.body.description;
@@ -57,7 +68,7 @@ router.put('/:id', function(req, res) {
 });
 
 // --- deletion of gallery item ---
-router.delete('/:id', function(req, res) {
+router.delete('/:id', ensureAuthenticated, function(req, res) {
   var photoId = req.params.id;
   var query = GalleryItem.find({ id : photoId });
   query.remove(function( err ){
