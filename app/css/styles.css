@@ -72,6 +72,10 @@ section {
       margin: 0 auto;
       padding: 0px; }
 
+a {
+  text-decoration: none;
+  color: #000; }
+
 form {
   width: 400px;
   display: block;
