@@ -7,4 +7,5 @@ var GalleryItemSchema = new Schema({
   description : String,
   created_at : { type : Date, default: Date.now() }
 });
+
 module.exports = mongoose.model( 'photo', GalleryItemSchema );

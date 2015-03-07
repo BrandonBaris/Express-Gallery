@@ -1,7 +1,11 @@
 var express = require('express');
 var router = express.Router();
-module.exports = router;
 var GalleryItem = require('../models/photo');
+
+function ensureAuthenticated(req, res, next){
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}
 
 // --- index ---
 router.list =  function (req, res) {
@@ -13,13 +17,8 @@ router.list =  function (req, res) {
   });
 };
 
-// --- new gallery render---
-router.get('/new', function (req, res) {
-  res.render('new');
-});
-
 // --- editing gallery ---
-router.get('/:id/edit', function (req, res) {
+router.get('/:id/edit',  ensureAuthenticated, function (req, res) {
   var photoId = req.params.id;
   var query = GalleryItem.where({ id : photoId });
 
@@ -29,8 +28,21 @@ router.get('/:id/edit', function (req, res) {
   });
 });
 
+// --- admin ---
+router.get('/admin', ensureAuthenticated, function (req, res) {
+  GalleryItem.find(function (err, photoInDb){
+    if (err) throw err;
+    res.render('auth/admin', {photos : photoInDb, user : req.user });
+  });
+});
+
+// --- new gallery render---
+router.get('/new', function (req, res) {
+  res.render('new');
+});
+
 // --- posting/creating a new gallery
-router.post('/', function(req, res) {
+router.post('/', ensureAuthenticated, function(req, res) {
 
   var photos = new GalleryItem({
     author : req.body.author,
@@ -45,7 +57,7 @@ router.post('/', function(req, res) {
 });
 
 // --- updating gallery via edit ---
-router.put('/:id', function(req, res) {
+router.put('/:id',  ensureAuthenticated, function(req, res) {
   var photoId = req.params.id;
   var author = req.body.author;
   var description = req.body.description;
@@ -57,7 +69,7 @@ router.put('/:id', function(req, res) {
 });
 
 // --- deletion of gallery item ---
-router.delete('/:id', function(req, res) {
+router.delete('/:id',  ensureAuthenticated, function(req, res) {
   var photoId = req.params.id;
   var query = GalleryItem.find({ id : photoId });
   query.remove(function( err ){
@@ -65,3 +77,29 @@ router.delete('/:id', function(req, res) {
     res.redirect( '/' );
   });
 });
+
+module.exports = router;
+
+// // --- GET login form ---
+// router.get('/login', function ( req, res ) {
+
+// res.render('login', { users: users }); //use passport
+// });
+
+// // --- POST login authentication ---
+// router.post('/login', function ( req, res ) {
+// res.redirect( '/login' );
+
+// });
+
+// // --- GET logout ---
+// router.get('/logout', function ( req, res ) {
+
+// res.redirect( '/' );
+// });
+
+// // --- GET login confirmation ---
+// router.get('/admin', function ( req, res ) {
+// res.redirect( '/' );
+
+// });
