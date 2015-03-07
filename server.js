@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var passport = require('passport');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
@@ -10,7 +13,6 @@ var passport = require('passport');
 var gallery = require('./controllers/gallery');
 var auth = require('./controllers/auth');
 mongoose.connect('mongodb://localhost/photos');
-// var User = require('../models/user');
 
 // middleware
 app.use(bodyParser.urlencoded({ extended: false }));

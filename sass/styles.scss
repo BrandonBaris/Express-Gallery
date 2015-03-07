@@ -4,6 +4,13 @@ $small-up: "only screen" !default;
 $medium-up: "only screen and (min-width: 40.063em)";
 $large-up: "only screen and (min-width: 64.063em)";
 
+
+@mixin type() {
+  color: #a4a4a4;
+  font-size: $rem-calc*0.8;    
+  vertical-align: inherit;
+}
+
 html {
   background: url('../assets/concrete_seamless.png') repeat;
   background-color: #fff;
@@ -14,8 +21,6 @@ html {
 }
 
 body {
-  // width: 730px;
-  // margin: 0 auto;
 }
 
 .container {
@@ -63,17 +68,13 @@ header {
   }
 
   .logo-blurb {
+    @include type();
     display: none;
     width: 330px;
     border-left: 1px solid #ccc;
     margin: 13px;
     padding-left: 13px;
     text-align: left;
-
-    //make mixin for this
-    color: #a4a4a4;
-    font-size: $rem-calc*0.8;    
-    vertical-align: inherit;
 
     @media #{$medium-up} {
       display: inline-block;
@@ -83,7 +84,7 @@ header {
 
 section {
 
-  width: 100%;
+  width: auto;
 
   &.hero {
 
@@ -105,6 +106,11 @@ section {
       padding: 0px;  
     }
   } 
+}
+
+a {
+  text-decoration: none;
+  color: #000;
 }
 
 form {
@@ -190,6 +196,8 @@ form {
 
   img {
     overflow: hidden;
+    width: inherit;
+
     @media #{$medium-up} {
       display: inline-block;
       text-align: left;
@@ -203,15 +211,21 @@ form {
     }
   }
   .caption {
+    @include type();
     margin: $rem-calc 0 0;
     text-align: left;
-    color: #a4a4a4;
-    font-size: $rem-calc*0.8;
 
     @media #{$medium-up} {
       width: inherit;
       height: auto;
     }
   }    
+}
+
+footer {
+  @include type();
+  width: 100%;
+  padding: 2em 0;
+  height: 100px;
 }
 

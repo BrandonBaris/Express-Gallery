@@ -11,7 +11,6 @@ function ensureAuthenticated(req, res, next){
 router.list =  function (req, res) {
   GalleryItem.find(function(err, photoInDb){
     if (err) throw err;
-    // console.log(photos.image);
     res.render('index', { photos : photoInDb});
 
   });
@@ -79,27 +78,3 @@ router.delete('/:id',  ensureAuthenticated, function(req, res) {
 });
 
 module.exports = router;
-
-// // --- GET login form ---
-// router.get('/login', function ( req, res ) {
-
-// res.render('login', { users: users }); //use passport
-// });
-
-// // --- POST login authentication ---
-// router.post('/login', function ( req, res ) {
-// res.redirect( '/login' );
-
-// });
-
-// // --- GET logout ---
-// router.get('/logout', function ( req, res ) {
-
-// res.redirect( '/' );
-// });
-
-// // --- GET login confirmation ---
-// router.get('/admin', function ( req, res ) {
-// res.redirect( '/' );
-
-// });

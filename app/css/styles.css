@@ -41,21 +41,21 @@ header {
         text-align: center;
         width: 400px; } }
   header .logo-blurb {
+    color: #a4a4a4;
+    font-size: 0.8em;
+    vertical-align: inherit;
     display: none;
     width: 330px;
     border-left: 1px solid #ccc;
     margin: 13px;
     padding-left: 13px;
-    text-align: left;
-    color: #a4a4a4;
-    font-size: 0.8em;
-    vertical-align: inherit; }
+    text-align: left; }
     @media only screen and (min-width: 40.063em) {
       header .logo-blurb {
         display: inline-block; } }
 
 section {
-  width: 100%; }
+  width: auto; }
   section.hero {
     width: 320px;
     margin: 0 auto;
@@ -71,6 +71,10 @@ section {
       height: auto;
       margin: 0 auto;
       padding: 0px; }
+
+a {
+  text-decoration: none;
+  color: #000; }
 
 form {
   width: 400px;
@@ -132,7 +136,8 @@ form {
         padding-bottom: 0;
         border-bottom: none; } }
   .flex-box img {
-    overflow: hidden; }
+    overflow: hidden;
+    width: inherit; }
     @media only screen and (min-width: 40.063em) {
       .flex-box img {
         display: inline-block;
@@ -142,11 +147,20 @@ form {
       width: inherit;
       height: auto; } }
   .flex-box .caption {
-    margin: 1em 0 0;
-    text-align: left;
     color: #a4a4a4;
-    font-size: 0.8em; }
+    font-size: 0.8em;
+    vertical-align: inherit;
+    margin: 1em 0 0;
+    text-align: left; }
     @media only screen and (min-width: 40.063em) {
       .flex-box .caption {
         width: inherit;
         height: auto; } }
+
+footer {
+  color: #a4a4a4;
+  font-size: 0.8em;
+  vertical-align: inherit;
+  width: 100%;
+  padding: 2em 0;
+  height: 100px; }

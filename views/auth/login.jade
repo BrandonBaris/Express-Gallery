@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 doctype
 html(lang="en")
 head
@@ -12,3 +13,25 @@ body
     div
       button Log In
   
+=======
+extends ../partials/header.jade
+
+block content
+  header 
+    .logo
+      h1 Login Page
+    .logo-blurb
+      span Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page Login Page 
+
+  section
+    form.pure-form(action="/login" method="POST")
+      fieldset
+        label(for="username") Username
+        input.username(type="text" name="username" placeholder="User Name")
+        label(for="password") Password
+        input.password(type="password" name="password" placeholder="Password")
+        button.pure-button.pure-button-primary(type="submit") Log In
+  footer
+script(type="text/javascript" src="/js/jquery.min.js")
+script(type="text/javascript" src="/js/app.js")
+>>>>>>> 8d03c4341d3788c20c100b725d2ae115e19c679f

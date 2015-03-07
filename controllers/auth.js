@@ -10,11 +10,9 @@ passport.use(new LocalStrategy(
     User.findOne({ username: username }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
-        // console.log("NOT VALID USER");
         return done(null, false, { message: 'Incorrect username.' });
       }
       if (!user.validPassword(password)) {
-        // console.log("NOT VALID PASSWORD");
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);
@@ -44,11 +42,12 @@ router.authenticate = passport.authenticate('local', {
 //                    v---- middleware
 router.post('/login', router.authenticate);
 
-
 // --- logout ---
 router.get('/logout', function ( req, res ) {
+
   req.logout();
   res.redirect('/');
 });
 
 module.exports = router;
+
