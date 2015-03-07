@@ -28,7 +28,6 @@ app.get('/', function (req, res) {
     if (err) throw err;
     // console.log(photos.image);
     res.render('index', { photos : photoInDb});
-
   });
 });
 
