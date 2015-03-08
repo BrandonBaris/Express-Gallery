@@ -13,10 +13,11 @@ block content
   section.flex-container
 
     each photo in photos
-      .flex-box
-        img.flex-image(src="#{photo.image}")
-        .caption= photo.author
-          p= photo.description
+      .flex-box(data-photo-id="#{photo.id}")
+          img.flex-image(src="#{photo.image}")
+          a(href="/gallery/#{photo.id}/edit" class="edit")
+            .caption= photo.author
+            p= photo.description
   
   include ../includes/footer.jade
 

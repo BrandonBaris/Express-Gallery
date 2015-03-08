@@ -1,22 +1,20 @@
 extends ./partials/header.jade
 
 block content
-  header
+  header 
     .logo
-      h1 _ARCHITEKT
+      h1 Login Page
     .logo-blurb
       span Welcome to our online portfolio, we are a small group of passionate designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps. Free Architecture WordPress Theme.
 
-  section.hero
-    img(src="http://placekitten.com/g/730/300")
-
-  section.flex-container
-
-    each photo in photos
-      .flex-box(data-photo-id="#{photo.id}")
-        img.flex-image(src="#{photo.image}")
-        .caption= photo.author
-          p= photo.description
+  section
+    form.pure-form(action="/login" method="POST")
+      fieldset
+        label(for="username") Username
+        input.username(name="username")
+        label(for="password") Password
+        input.password(name="password")
+        button.pure-button.pure-button-primary(type="submit") Login
 
   include ./includes/footer.jade
 
