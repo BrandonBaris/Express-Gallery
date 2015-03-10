@@ -8,22 +8,27 @@ function ensureAuthenticated(req, res, next){
 }
 
 // --- index ---
-router.list =  function (req, res) {
+router.list = function (req, res) {
   GalleryItem.find(function(err, photoInDb){
     if (err) throw err;
     res.render('index', { photos : photoInDb});
-
   });
 };
 
+// --- new gallery render---
+router.get('/new', ensureAuthenticated, function (req, res) {
+  res.render('new');
+});
+
 // --- editing gallery ---
-router.get('/:id/edit',  ensureAuthenticated, function (req, res) {
+router.get('/:id/edit', ensureAuthenticated, function (req, res) {
   var photoId = req.params.id;
-  var query = GalleryItem.where({ id : photoId });
+  var query = GalleryItem.where({ _id : photoId });
 
   query.findOne(function( err, photoInDb ){
     if (err) throw err;
-    res.render('edit', { photos : photoInDb });
+    console.log(photoInDb);
+    res.render('edit', { photo : photoInDb });
   });
 });
 
@@ -58,10 +63,10 @@ router.post('/', ensureAuthenticated, function(req, res) {
 // --- updating gallery via edit ---
 router.put('/:id',  ensureAuthenticated, function(req, res) {
   var photoId = req.params.id;
+  var image = req.body.image;
   var author = req.body.author;
   var description = req.body.description;
-  var query = GalleryItem.find({ id : photoId });
-  query.update({author: author, description: description }, function( err ){
+  GalleryItem.findOneAndUpdate( {_id: photoId}, { image: image, author: author, description: description }, function( err ){
     if (err) throw err;
     res.redirect( '/' );
   });
@@ -70,7 +75,7 @@ router.put('/:id',  ensureAuthenticated, function(req, res) {
 // --- deletion of gallery item ---
 router.delete('/:id',  ensureAuthenticated, function(req, res) {
   var photoId = req.params.id;
-  var query = GalleryItem.find({ id : photoId });
+  var query = GalleryItem.find({ _id : photoId });
   query.remove(function( err ){
     if (err) throw err;
     res.redirect( '/' );

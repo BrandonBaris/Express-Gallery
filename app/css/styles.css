@@ -75,6 +75,8 @@ section {
 a {
   text-decoration: none;
   color: #000; }
+  a .edit:hover {
+    border: 1px solid #f00; }
 
 form {
   width: 400px;
@@ -125,6 +127,7 @@ form {
   @media only screen and (min-width: 64.063em) {
     .flex-box {
       width: 230px;
+      height: 260px;
       padding-bottom: 1em;
       border-bottom: 1px solid #ccc;
       margin: 0; } }
@@ -135,17 +138,15 @@ form {
       .flex-box:last-of-type .caption {
         padding-bottom: 0;
         border-bottom: none; } }
-  .flex-box img {
+  .flex-box .flex-image {
     overflow: hidden;
     width: inherit; }
     @media only screen and (min-width: 40.063em) {
-      .flex-box img {
+      .flex-box .flex-image {
+        width: inherit;
+        max-height: 400px;
         display: inline-block;
         text-align: left; } }
-  @media only screen and (min-width: 40.063em) {
-    .flex-box .flex-image {
-      width: inherit;
-      height: auto; } }
   .flex-box .caption {
     color: #a4a4a4;
     font-size: 0.8em;
@@ -164,3 +165,5 @@ footer {
   width: 100%;
   padding: 2em 0;
   height: 100px; }
+  footer span a {
+    margin-right: 1.5em; }

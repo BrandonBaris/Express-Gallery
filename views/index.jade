@@ -1,7 +1,7 @@
 extends ./partials/header.jade
 
 block content
-  header 
+  header
     .logo
       h1 _ARCHITEKT
     .logo-blurb
@@ -13,11 +13,11 @@ block content
   section.flex-container
 
     each photo in photos
-      .flex-box
+      .flex-box(data-photo-id="#{photo.id}")
         img.flex-image(src="#{photo.image}")
         .caption= photo.author
           p= photo.description
-  
+
   include ./includes/footer.jade
 
 script(type="text/javascript" src="/js/jquery.min.js")

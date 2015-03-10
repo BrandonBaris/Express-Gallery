@@ -1,14 +1,22 @@
-doctype
-html(lang="en")
-head
-  meta(charset="UTF-8")
-  title Login Form
-body
-  form(action="/login", method="POST")
-    div
-      input(type="text", name="username", placeholder="User Name")
-    div
-      input(type="password", name="password", placeholder="Password")
-    div
-      button Log In
-  
+extends ./partials/header.jade
+
+block content
+  header 
+    .logo
+      h1 Login Page
+    .logo-blurb
+      span Welcome to our online portfolio, we are a small group of passionate designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps. Free Architecture WordPress Theme.
+
+  section
+    form.pure-form(action="/login" method="POST")
+      fieldset
+        label(for="username") Username
+        input.username(name="username")
+        label(for="password") Password
+        input.password(name="password")
+        button.pure-button.pure-button-primary(type="submit") Login
+
+  include ./includes/footer.jade
+
+script(type="text/javascript" src="/js/jquery.min.js")
+script(type="text/javascript" src="/js/app.js")

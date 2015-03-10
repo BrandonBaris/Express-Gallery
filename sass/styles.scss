@@ -111,6 +111,10 @@ section {
 a {
   text-decoration: none;
   color: #000;
+
+  .edit:hover {
+    border: 1px solid #f00;
+  }
 }
 
 form {
@@ -172,13 +176,14 @@ form {
 
   width: 300px;
   margin: 0 auto;
-
+  
   flex-grow: 0;
   flex-shrink: 0;
   padding-top: $rem-calc*0.7;
 
   @media #{$large-up} {
     width: 230px;
+    height: 260px;
     padding-bottom: $rem-calc;
     border-bottom: 1px solid #ccc;
     margin: 0;
@@ -194,20 +199,15 @@ form {
     }
   }
 
-  img {
+  .flex-image {
     overflow: hidden;
     width: inherit;
-
-    @media #{$medium-up} {
-      display: inline-block;
-      text-align: left;
-    }  
-  }
-  
-  .flex-image {
+    
     @media #{$medium-up} {
       width: inherit;
-      height: auto;
+      max-height: 400px;
+      display: inline-block;
+      text-align: left;
     }
   }
   .caption {
@@ -227,5 +227,9 @@ footer {
   width: 100%;
   padding: 2em 0;
   height: 100px;
+
+  span a {
+    margin-right: 1.5em;
+  }
 }
 

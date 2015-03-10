@@ -8,14 +8,14 @@ block content
       span Welcome to our online portfolio, we are a small group of passionate designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps. Free Architecture WordPress Theme.
 
   section
-    form.pure-form
+    form.pure-form(action="/gallery/#{photo.id}?_method=PUT" method="POST")
       fieldset
         label(for="image") Image
-        input.image(name="image")
+        input.image(name="image" placeholder="Image" value="#{photo.image}")
         label(for="author") Author
-        input.author(name="author")
+        input.author(name="author" placeholder="Author" value="#{photo.author}")
         label(for="description") Description
-        textarea.description(contenteditable)
+        textarea.description(name="description" placeholder="Description")= photo.description
         button.pure-button.pure-button-primary(type="submit") Submit
 
   include ./includes/footer.jade
